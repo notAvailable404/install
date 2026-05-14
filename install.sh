@@ -5,8 +5,7 @@ set -e  # Exit on error
 sudo pacman -Syu --noconfirm
 
 # 2. Install core dependencies
-sudo pacman -S --noconfirm qt6-declarative qt6-svg qt6-quickcontrols2 \
-    git curl wget perl gcc g++ make cmake nano neovim sassc fish
+sudo pacman -S --needed --noconfirm qt6-declarative qt6-svg qt6-quickcontrols2 git curl wget perl gcc g++ make cmake nano neovim sassc fish base-devel
 
 # 3. Setup SDDM Theme
 if [ ! -d "$HOME/pixie-sddm" ]; then
@@ -23,10 +22,9 @@ cd "$DOT_DIR"
 ./install.fish
 
 # 5. Install Applications (GNOME Suite)
-sudo pacman -S --noconfirm firefox nautilus libreoffice-fresh gnome-text-editor eog ark papers flatpak swayimg gnome-software desktop-file-utils mpv
+sudo pacman -S --needed --noconfirm firefox nautilus libreoffice-fresh gnome-text-editor eog ark papers flatpak swayimg gnome-software desktop-file-utils mpv
 # ORIGINAL: ( In case Caelestia shell doesn't do nicely with gnome packages, or the other way around )
 # sudo pacman -S --noconfirm firefox nautilis libreoffice-fresh gwenview kate ark okular flatpak discover swayimg desktop-file-utils haruna
 
 # 6. Finalize Services
-sudo systemctl enable sddm.service
-sudo systemctl start sddm
+sudo systemctl enable --now sddm.service
